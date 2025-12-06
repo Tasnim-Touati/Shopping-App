@@ -30,7 +30,7 @@ const ProductDetailsScreen = () => {
   if (!product) return null;
 
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
       <FlatList
         data={product.images}
         renderItem={({ item }) => (
@@ -40,10 +40,15 @@ const ProductDetailsScreen = () => {
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         keyExtractor={(item, index) => index.toString()}
+        scrollEnabled={false}
       />
 
       <View style={{ padding: 20 }}>
         <Text style={styles.title}>{product.name}</Text>
+        <Text style={styles.price}>${product.price}</Text>
+        {product.description && (
+          <Text style={styles.description}>{product.description}</Text>
+        )}
       </View>
 
       <Pressable
@@ -69,6 +74,18 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
     marginVertical: 10,
+  },
+  price: {
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#000",
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 14,
+    color: "#555",
+    lineHeight: 22,
+    marginTop: 10,
   },
   button: {
     backgroundColor: "#000000",
